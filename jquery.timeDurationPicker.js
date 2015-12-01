@@ -90,11 +90,11 @@
         this._content = {};
         this._content.div = $('<div />');
         this._content.div.addClass('ui-widget ui-widget-content ui-helper-clearfix ui-corner-all');
-        this._content.div.addClass('duration-picker-content');
+        this._content.div.addClass('time-duration-picker-content');
         this._content.div.css({
             display: 'none',
             position: 'fixed',
-            'z-index': 401
+            "z-index": 401
         });
         this._content.div.appendTo(document.body);
 
@@ -179,20 +179,21 @@
       $('<td />').css({
         width: '50%',
         padding: '.5em 1em',
-        'text-align': 'right',
-        'vertical-align': 'middle'
+        "text-align": 'right',
+        "vertical-align": 'middle'
       }).append($('<strong />')
         .text(text))
         .appendTo(row);
-      $('<td />').css({width: '50%',
+      $('<td />').css({
+        width: '50%',
         padding: '.5em 1em',
-        'text-align': 'right',
-        'vertical-align': 'middle'
+        "text-align": 'right',
+        "vertical-align": 'middle'
       }).append(el)
         .appendTo(row);
     },
     _tr: function(key) {
-      return this._langs[$.timeDurationPicker.defaults.lang][key];
+      return this._langs[this.options.lang][key];
     },
     getSeconds: function() {
       return parseInt(this._content.seconds.val());
