@@ -26,7 +26,7 @@
 (function($) {
   var instances = [];
 
-  $(document.body).focusin(function(e) {
+  $(document).focusin(function(e) {
     for (var i = 0, c = instances.length; i < c; ++i) {
       var inst = instances[i];
       for (var j = 0, l = inst.element.length; j < l; ++j) {
