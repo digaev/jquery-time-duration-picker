@@ -1,7 +1,7 @@
 /*!
  * jQuery TimeDurationPicker Plugin v1.0.0
  *
- * https://gi.org/
+ * https://github.com/digaev/jQuery-timeDurationPicker
  *
  * Copyright (c) 2015 Nikolay Digaev
  * Released under the MIT license
@@ -94,7 +94,6 @@
         this._content.div.css({
             display: 'none',
             position: 'fixed',
-            width: '17em',
             'z-index': 401
         });
         this._content.div.appendTo(document.body);
@@ -180,13 +179,15 @@
       $('<td />').css({
         width: '50%',
         padding: '.5em 1em',
-        'text-align': 'right'
+        'text-align': 'right',
+        'vertical-align': 'middle'
       }).append($('<strong />')
         .text(text))
         .appendTo(row);
       $('<td />').css({width: '50%',
         padding: '.5em 1em',
-        'text-align': 'right'
+        'text-align': 'right',
+        'vertical-align': 'middle'
       }).append(el)
         .appendTo(row);
     },
