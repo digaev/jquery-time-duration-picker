@@ -34,17 +34,29 @@
           var offset = $(e.target).offset();
           offset.top += $(e.target).outerHeight();
           inst._content.div.css(offset).fadeIn();
-          return;
         }
       }
     }
   }).focusout(function(e) {
-    for (var i = 0, c = instances.length; i < c; ++i) {
-      var inst = instances[i];
-      if (!$.contains(inst._content.div[0], e.relatedTarget)) {
-        inst._content.div.fadeOut();
+    // FIXME
+    setTimeout(function() {
+      var el = document.activeElement;
+      if ($(el).parents('.time-duration-picker-content').length == 0) {
+        for (var i = 0, c = instances.length; i < c; ++i) {
+          var hide = true;
+          var inst = instances[i];
+          for (var j = 0, l = inst.element.length; j < l; ++j) {
+            if (inst.element[j] == el) {
+              hide = false;
+              break;
+            }
+          }
+          if (hide) {
+            inst._content.div.fadeOut();
+          }
+        }
       }
-    }
+    }, 10);
   });
 
   $.widget('custom.timeDurationPicker', {
