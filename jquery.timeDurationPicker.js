@@ -172,7 +172,6 @@
     _createSelectWithOptions: function(min, max) {
         var select = $('<select />')
           .addClass('ui-widget ui-state-default ui-corner-all')
-          .appendTo(this._content.tableBody);
 
         select.hover(function() {
           $(this).addClass('ui-state-hover');
