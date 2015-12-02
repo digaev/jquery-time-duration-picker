@@ -9,7 +9,7 @@
 
 (function($) {
   $.timeDurationPicker = function(options) {
-    $.timeDurationPicker.defaults = $.extend($.timeDurationPicker.defaults, options);
+    $.timeDurationPicker.defaults = $.extend({}, $.timeDurationPicker.defaults, options);
   }
 
   $.timeDurationPicker.defaults = {
