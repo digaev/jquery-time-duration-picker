@@ -1,5 +1,5 @@
 /*!
- * jQuery TimeDurationPicker Plugin v1.0.1
+ * jQuery TimeDurationPicker Plugin v1.0.2
  *
  * https://github.com/digaev/jQuery-timeDurationPicker
  *
@@ -58,7 +58,13 @@
       }
     }, 10);
   });
-
+  
+  var YEAR = 12 * 30 * 24 * 60 * 60;
+  var MONTH = 30 * 24 * 60 * 60;
+  var DAY = 24 * 60 * 60;
+  var HOUR = 60 * 60;
+  var MINUTE = 60;
+  
   $.widget('custom.timeDurationPicker', {
     options: {
     },
@@ -234,41 +240,41 @@
 
       var i;
       if (this.options.years) {
-        i = Math.floor(value / (12 * 30 * 24 * 60 * 60));
+        i = Math.floor(value / YEAR);
+        value -= i * YEAR;
         this._content.years.val(i);
-        value -= i;
       }
       if (this.options.months) {
-        i = Math.floor(value / (30 * 24 * 60 * 60));
+        i = Math.floor(value / MONTH);
         if (i >= 12) {
           i = 0;
         }
+        value -= i * MONTH;
         this._content.months.val(i);
-        value -= i;
       }
       if (this.options.days) {
-        i = Math.floor(value / (24 * 60 * 60));
+        i = Math.floor(value / DAY);
         if (i >= 30) {
           i = 0;
         }
+        value -= i * DAY;
         this._content.days.val(i);
-        value -= i;
       }
       if (this.options.hours) {
-        i = Math.floor(value / (60 * 60));
+        i = Math.floor(value / HOUR);
         if (i >= 24) {
           i = 0;
         }
+        value -= i * HOUR;
         this._content.hours.val(i);
-        value -= i;
       }
       if (this.options.minutes) {
-        i = Math.floor(value / 60);
+        i = Math.floor(value / MINUTE);
         if (i >= 60) {
           i = 0;
         }
+        value -= i * MINUTE;
         this._content.minutes.val(i);
-        value -= i;
       }
       if (this.options.seconds) {
         i = Math.floor(value);
@@ -285,19 +291,19 @@
         seconds += this.getSeconds();
       }
       if (this.options.minutes) {
-        seconds += this.getMinutes() * 60;
+        seconds += this.getMinutes() * MINUTE;
       }
       if (this.options.hours) {
-        seconds += this.getHours() * 60 * 60;
+        seconds += this.getHours() * HOUR;
       }
       if (this.options.days) {
-        seconds += this.getDays() * 24 * 60 * 60;
+        seconds += this.getDays() * DAY;
       }
       if (this.options.months) {
-        seconds += this.getMonths() * 30 * 24 * 60 * 60;
+        seconds += this.getMonths() * MONTH;
       }
       if (this.options.years) {
-        seconds += this.getYears() * 12 * 30 * 24 * 60 * 60;
+        seconds += this.getYears() * YEAR;
       }
       return seconds;
     },
