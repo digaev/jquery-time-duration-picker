@@ -1,5 +1,5 @@
 /*!
- * jQuery TimeDurationPicker Plugin v1.0.0
+ * jQuery TimeDurationPicker Plugin v1.0.1
  *
  * https://github.com/digaev/jQuery-timeDurationPicker
  *
