@@ -236,6 +236,7 @@
       if (this.options.years) {
         i = Math.floor(value / (12 * 30 * 24 * 60 * 60));
         this._content.years.val(i);
+        value -= i;
       }
       if (this.options.months) {
         i = Math.floor(value / (30 * 24 * 60 * 60));
@@ -243,6 +244,7 @@
           i = 0;
         }
         this._content.months.val(i);
+        value -= i;
       }
       if (this.options.days) {
         i = Math.floor(value / (24 * 60 * 60));
@@ -250,6 +252,7 @@
           i = 0;
         }
         this._content.days.val(i);
+        value -= i;
       }
       if (this.options.hours) {
         i = Math.floor(value / (60 * 60));
@@ -257,6 +260,7 @@
           i = 0;
         }
         this._content.hours.val(i);
+        value -= i;
       }
       if (this.options.minutes) {
         i = Math.floor(value / 60);
@@ -264,6 +268,7 @@
           i = 0;
         }
         this._content.minutes.val(i);
+        value -= i;
       }
       if (this.options.seconds) {
         i = Math.floor(value);
