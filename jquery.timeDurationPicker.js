@@ -131,7 +131,7 @@
         this._content.div.addClass('time-duration-picker-content');
         this._content.div.css({
             display: 'none',
-            position: 'fixed',
+            position: 'absolute',
             "z-index": 401
         });
         this._content.div.appendTo(document.body);
