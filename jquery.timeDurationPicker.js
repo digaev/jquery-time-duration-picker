@@ -14,6 +14,7 @@
 
   $.timeDurationPicker.defaults = {
     lang: 'en',
+    position: 'fixed', // https://github.com/digaev/jQuery-timeDurationPicker/issues/1
     seconds: false,
     minutes: true,
     hours: true,
@@ -131,7 +132,7 @@
         this._content.div.addClass('time-duration-picker-content');
         this._content.div.css({
             display: 'none',
-            position: 'fixed',
+            position: this.options.position,
             "z-index": 401
         });
         this._content.div.appendTo(document.body);
