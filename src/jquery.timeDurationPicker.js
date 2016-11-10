@@ -208,7 +208,9 @@
         } else {
           value = this.options.defaultValue;
         }
-        this.setDuration( value );
+        if ( this.setDuration( value ) ) {
+          this.element.val( this.getHumanDuration() );
+        }
       }
     },
     _createSelectWithOptions: function( min, max ) {

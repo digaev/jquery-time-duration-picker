@@ -4,16 +4,24 @@
   <meta charset="UTF-8">
   <title></title>
   <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/themes/black-tie/jquery-ui.css">
+  <style>
+    body {
+      padding: 10px;
+    }
+    input[type="text"] {
+      font-size: 18px;
+    }
+  </style>
 </head>
 <body>
-  <div>
-    <input type="text" readonly="readonly" id="duration" />
+  <center>
+    <input type="text" readonly="readonly" id="duration" size="100" style="text-align: center;" />
     <input type="hidden" name="seconds" value="0" id="seconds" /> 
-  </div>
+  </center>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="../jquery.timeDurationPicker.min.js"></script>
+  <script type="text/javascript" src="../dist/jquery.timeDurationPicker.min.js"></script>
   <script>
     $(function() {
       $('#duration').timeDurationPicker({
