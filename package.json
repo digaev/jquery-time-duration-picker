@@ -4,7 +4,7 @@
   "description": "jQuery-ui widget for choosing time duration",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "uglify": "./node_modules/.bin/uglifyjs ./jquery.timeDurationPicker.js -o ./dist/jquery.timeDurationPicker.min.js"
+    "uglify": "./node_modules/.bin/uglifyjs ./src/jquery.timeDurationPicker.js -o ./dist/jquery.timeDurationPicker.min.js"
   },
   "repository": {
     "type": "git",
