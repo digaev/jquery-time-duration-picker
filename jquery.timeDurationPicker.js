@@ -61,13 +61,13 @@
       }
     }, 10);
   });
-  
+
   var YEAR = 12 * 30 * 24 * 60 * 60;
   var MONTH = 30 * 24 * 60 * 60;
   var DAY = 24 * 60 * 60;
   var HOUR = 60 * 60;
   var MINUTE = 60;
-  
+
   $.widget('custom.timeDurationPicker', {
     options: {
     },
@@ -191,7 +191,13 @@
           this._appendRow(this._tr('years'), this._content.years);
         }
         if (this.options.defaultValue) {
-          this.setDuration(this.options.defaultValue);
+          var value;
+          if (typeof this.options.defaultValue === 'function') {
+            value = this.options.defaultValue.call(this);
+          } else {
+            value = this.options.defaultValue;
+          }
+          this.setDuration(value);
         }
     },
     _createSelectWithOptions: function(min, max) {
