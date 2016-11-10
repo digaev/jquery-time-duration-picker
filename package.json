@@ -1,6 +1,6 @@
 {
   "name": "jquery-time-duration-picker",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "jQuery-ui widget for choosing time duration",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,5 +21,14 @@
   "bugs": {
     "url": "https://github.com/digaev/jQuery-timeDurationPicker/issues"
   },
-  "homepage": "https://github.com/digaev/jQuery-timeDurationPicker#readme"
+  "homepage": "https://github.com/digaev/jQuery-timeDurationPicker#readme",
+  "devDependencies": {
+    "eslint": "^3.9.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-config-jquery": "^1.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.6.0"
+  }
 }
