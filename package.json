@@ -3,7 +3,8 @@
   "version": "1.0.7",
   "description": "jQuery-ui widget for choosing time duration",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "uglify": "./node_modules/.bin/uglifyjs ./jquery.timeDurationPicker.js -o ./jquery.timeDurationPicker.min.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   "homepage": "https://github.com/digaev/jQuery-timeDurationPicker#readme",
   "devDependencies": {
     "eslint": "^3.9.1",
-    "eslint-config-jquery": "^1.0.0"
+    "eslint-config-jquery": "^1.0.0",
+    "uglify-js": "^2.7.4"
   }
 }
