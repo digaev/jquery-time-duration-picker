@@ -24,11 +24,6 @@
   "homepage": "https://github.com/digaev/jQuery-timeDurationPicker#readme",
   "devDependencies": {
     "eslint": "^3.9.1",
-    "eslint-config-airbnb": "^13.0.0",
-    "eslint-config-airbnb-base": "^10.0.1",
-    "eslint-config-jquery": "^1.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.6.0"
+    "eslint-config-jquery": "^1.0.0"
   }
 }
