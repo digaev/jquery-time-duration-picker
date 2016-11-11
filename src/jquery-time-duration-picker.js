@@ -1,7 +1,7 @@
 /*!
- * jQuery TimeDurationPicker Plugin v1.0.7
+ * jquery-time-duration-picker v1.0.7
  *
- * https://github.com/digaev/jQuery-timeDurationPicker
+ * https://github.com/digaev/jquery-time-duration-picker
  *
  * Copyright (c) 2015 Nikolay Digaev
  * Released under the MIT license
@@ -16,7 +16,7 @@
 
   $.timeDurationPicker.defaults = {
     lang: "en",
-    position: "fixed", // https://github.com/digaev/jQuery-timeDurationPicker/issues/1
+    position: "fixed", // https://github.com/digaev/jquery-time-duration-picker/issues/1
     seconds: false,
     minutes: true,
     hours: true,
