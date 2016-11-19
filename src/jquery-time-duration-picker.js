@@ -164,8 +164,8 @@
       } );
       this._content.button.on( "click", function() {
         self._content.div.fadeOut();
-        if ( self.options.onselect ) {
-          self.options.onselect(
+        if ( self.options.onSelect ) {
+          self.options.onSelect(
             self.element, self.getDuration(), self.getHumanDuration()
           );
         }
