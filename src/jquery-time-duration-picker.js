@@ -20,7 +20,6 @@
     minutes: true,
     seconds: false
   };
-
   $.timeDurationPicker = {
     defaults: function( options ) {
       var opts = $.extend( true, {}, defaults, options );
