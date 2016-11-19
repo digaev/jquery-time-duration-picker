@@ -11,7 +11,7 @@
   $.timeDurationPicker = {
     setDefaults: function( options ) {
       $.timeDurationPicker.defaults = $.extend( true, {}, {
-        lang: "en",
+        lang: "en_US",
         css: {
           position: "fixed" // https://github.com/digaev/jquery-time-duration-picker/issues/1
         },
@@ -21,8 +21,25 @@
         hours: true,
         minutes: true,
         seconds: false
-        }, options
-      );
+        }, options );
+    },
+    langs: {
+      en_US: {
+        seconds: "Seconds",
+        minutes: "Minutes",
+        hours: "Hours",
+        days: "Days",
+        months: "Months",
+        years: "Years",
+        human_years: "years",
+        human_months: "months",
+        human_days: "days",
+        human_hours: "hours",
+        human_minutes: "minutes",
+        human_seconds: "seconds",
+        and: "and",
+        button_ok: "Done"
+      }
     }
   };
   $.timeDurationPicker.setDefaults();
@@ -75,56 +92,6 @@
 
   $.widget( "custom.timeDurationPicker", {
     options: {
-    },
-    _langs: {
-      en: {
-        seconds: "Seconds",
-        minutes: "Minutes",
-        hours: "Hours",
-        days: "Days",
-        months: "Months",
-        years: "Years",
-        human_years: "years",
-        human_months: "months",
-        human_days: "days",
-        human_hours: "hours",
-        human_minutes: "minutes",
-        human_seconds: "seconds",
-        and: "and",
-        button_ok: "Done"
-      },
-      ru: {
-        seconds: "Секунды",
-        minutes: "Минуты",
-        hours: "Часы",
-        days: "Дни",
-        months: "Месяцы",
-        years: "Годы",
-        human_years: "лет",
-        human_months: "месяцев",
-        human_days: "дней",
-        human_hours: "часов",
-        human_minutes: "минут",
-        human_seconds: "секунд",
-        and: "и",
-        button_ok: "Выбрать"
-      },
-      ru_short: {
-        seconds: "Секунды",
-        minutes: "Минуты",
-        hours: "Часы",
-        days: "Дни",
-        months: "Месяцы",
-        years: "Годы",
-        human_years: "г.",
-        human_months: "мес.",
-        human_days: "д.",
-        human_hours: "час.",
-        human_minutes: "мин.",
-        human_seconds: "сек.",
-        and: "и",
-        button_ok: "Выбрать"
-      }
     },
     _create: function() {
       var self = this;
@@ -254,7 +221,7 @@
         .appendTo( row );
     },
     _tr: function( key ) {
-      return this._langs[ this.options.lang ][ key ];
+      return $.timeDurationPicker.langs[ this.options.lang ][ key ];
     },
     getSeconds: function() {
       return parseInt( this._content.seconds.val() );
