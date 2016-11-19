@@ -152,29 +152,29 @@
       instances.push( this );
     },
     _initUnits: function() {
-      if ( this.options.seconds ) {
-        this._content.seconds = this._createSelectWithOptions( 0, 59 );
-        this._appendRow( this._tr( "seconds" ), this._content.seconds );
-      }
-      if ( this.options.minutes ) {
-        this._content.minutes = this._createSelectWithOptions( 0, 59 );
-        this._appendRow( this._tr( "minutes" ), this._content.minutes );
-      }
-      if ( this.options.hours ) {
-        this._content.hours = this._createSelectWithOptions( 0, 23 );
-        this._appendRow( this._tr( "hours" ), this._content.hours );
-      }
-      if ( this.options.days ) {
-        this._content.days = this._createSelectWithOptions( 0, 29 );
-        this._appendRow( this._tr( "days" ), this._content.days );
+      if ( this.options.years ) {
+        this._content.years = this._createSelectWithOptions( 0, 10 );
+        this._appendRow( this._tr( "years" ), this._content.years );
       }
       if ( this.options.months ) {
         this._content.months = this._createSelectWithOptions( 0, 11 );
         this._appendRow( this._tr( "months" ), this._content.months );
       }
-      if ( this.options.years ) {
-        this._content.years = this._createSelectWithOptions( 0, 10 );
-        this._appendRow( this._tr( "years" ), this._content.years );
+      if ( this.options.days ) {
+        this._content.days = this._createSelectWithOptions( 0, 29 );
+        this._appendRow( this._tr( "days" ), this._content.days );
+      }
+      if ( this.options.hours ) {
+        this._content.hours = this._createSelectWithOptions( 0, 23 );
+        this._appendRow( this._tr( "hours" ), this._content.hours );
+      }
+      if ( this.options.minutes ) {
+        this._content.minutes = this._createSelectWithOptions( 0, 59 );
+        this._appendRow( this._tr( "minutes" ), this._content.minutes );
+      }
+      if ( this.options.seconds ) {
+        this._content.seconds = this._createSelectWithOptions( 0, 59 );
+        this._appendRow( this._tr( "seconds" ), this._content.seconds );
       }
       if ( this.options.defaultValue ) {
         var value;
