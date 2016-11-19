@@ -1,6 +1,6 @@
 # jquery-time-duration-picker
 
-jQuery-ui widget for choosing time duration.
+jQuery-ui widget for choosing duration.
 
 ## Installation
 ```
