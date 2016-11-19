@@ -8,22 +8,22 @@
  */
 
 ( function( $ ) {
-  $.timeDurationPicker = function( options ) {
-    $.timeDurationPicker.defaults = $.extend(
-      {}, $.timeDurationPicker.defaults, options
-    );
+  $.timeDurationPicker = {
+    setDefaults: function( options ) {
+      $.timeDurationPicker.defaults = $.extend( true, {}, {
+          lang: "en",
+          position: "fixed", // https://github.com/digaev/jquery-time-duration-picker/issues/1
+          years: true,
+          months: true,
+          days: true,
+          hours: true,
+          minutes: true,
+          seconds: false
+        }, options
+      );
+    }
   };
-
-  $.timeDurationPicker.defaults = {
-    lang: "en",
-    position: "fixed", // https://github.com/digaev/jquery-time-duration-picker/issues/1
-    seconds: false,
-    minutes: true,
-    hours: true,
-    days: true,
-    months: true,
-    years: true
-  };
+  $.timeDurationPicker.setDefaults();
 } )( jQuery );
 
 ( function( $ ) {
