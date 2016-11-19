@@ -8,20 +8,27 @@
  */
 
 ( function( $ ) {
+  var defaults = {
+    lang: "en_US",
+    css: {
+      position: "fixed" // https://github.com/digaev/jquery-time-duration-picker/issues/1
+    },
+    years: true,
+    months: true,
+    days: true,
+    hours: true,
+    minutes: true,
+    seconds: false
+  };
+
   $.timeDurationPicker = {
-    setDefaults: function( options ) {
-      $.timeDurationPicker.defaults = $.extend( true, {}, {
-        lang: "en_US",
-        css: {
-          position: "fixed" // https://github.com/digaev/jquery-time-duration-picker/issues/1
-        },
-        years: true,
-        months: true,
-        days: true,
-        hours: true,
-        minutes: true,
-        seconds: false
-        }, options );
+    defaults: function( options ) {
+      var opts = $.extend( true, {}, defaults, options );
+      if ( options ) {
+        defaults = opts;
+      } else {
+        return opts;
+      }
     },
     langs: {
       en_US: {
@@ -42,7 +49,7 @@
       }
     }
   };
-  $.timeDurationPicker.setDefaults();
+  $.timeDurationPicker.defaults();
 } )( jQuery );
 
 ( function( $ ) {
@@ -97,7 +104,7 @@
       var self = this;
 
       this.options = $.extend(
-        true, {}, $.timeDurationPicker.defaults, this.options
+        true, {}, $.timeDurationPicker.defaults(), this.options
       );
 
       this._content = {};
