@@ -16,22 +16,21 @@
 <body>
   <center>
     <input type="text" readonly="readonly" id="duration" placeholder="Click here..." size="100" style="text-align: center;" />
-    <input type="hidden" name="seconds" value="0" id="seconds" />
+    <input type="hidden" name="seconds" value="12345" id="seconds" />
   </center>
 
   <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="../dist/jquery-time-duration-picker.min.js"></script>
+  <script type="text/javascript" src="../src/jquery-time-duration-picker.js"></script>
   <script>
     $(function() {
       $('#duration').timeDurationPicker({
         defaultValue: function() {
-          return 12345;
+          return $('#seconds').val();
         },
-        onselect: function(element, seconds, humanDuration) {
-          $('#duration').val(humanDuration);
+        onSelect: function(element, seconds, duration) {
           $('#seconds').val(seconds);
-          console.log(seconds, humanDuration);
+          $('#duration').val(duration);
         }
       });
     });
