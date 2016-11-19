@@ -11,14 +11,16 @@
   $.timeDurationPicker = {
     setDefaults: function( options ) {
       $.timeDurationPicker.defaults = $.extend( true, {}, {
-          lang: "en",
-          position: "fixed", // https://github.com/digaev/jquery-time-duration-picker/issues/1
-          years: true,
-          months: true,
-          days: true,
-          hours: true,
-          minutes: true,
-          seconds: false
+        lang: "en",
+        css: {
+          position: "fixed" // https://github.com/digaev/jquery-time-duration-picker/issues/1
+        },
+        years: true,
+        months: true,
+        days: true,
+        hours: true,
+        minutes: true,
+        seconds: false
         }, options
       );
     }
@@ -128,18 +130,17 @@
       var self = this;
 
       this.options = $.extend(
-        {}, $.timeDurationPicker.defaults, this.options
+        true, {}, $.timeDurationPicker.defaults, this.options
       );
 
       this._content = {};
       this._content.div = $( "<div />" );
       this._content.div.addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" );
       this._content.div.addClass( "time-duration-picker-content" );
-      this._content.div.css( {
+      this._content.div.css( $.extend( {
           display: "none",
-          position: this.options.position,
           "z-index": 401
-      } );
+      }, this.options.css ) );
       this._content.div.appendTo( document.body );
 
       this._content.table = $(
