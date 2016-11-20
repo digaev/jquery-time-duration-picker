@@ -166,7 +166,7 @@
       this._content.tableBody = $( "tbody", this._content.table );
 
       this._content.button = $( "<input type='button' />" )
-        .val( this._tr( "button_ok" ) );
+        .val( this._t( "button_ok" ) );
       this._content.button.addClass(
         "ui-button ui-widget ui-state-default ui-corner-all"
       );
@@ -197,27 +197,27 @@
     _initUnits: function() {
       if ( this.options.years ) {
         this._content.years = this._createSelectWithOptions( 0, 10 );
-        this._appendRow( this._tr( "years" ), this._content.years );
+        this._appendRow( this._t( "years" ), this._content.years );
       }
       if ( this.options.months ) {
         this._content.months = this._createSelectWithOptions( 0, 11 );
-        this._appendRow( this._tr( "months" ), this._content.months );
+        this._appendRow( this._t( "months" ), this._content.months );
       }
       if ( this.options.days ) {
         this._content.days = this._createSelectWithOptions( 0, 29 );
-        this._appendRow( this._tr( "days" ), this._content.days );
+        this._appendRow( this._t( "days" ), this._content.days );
       }
       if ( this.options.hours ) {
         this._content.hours = this._createSelectWithOptions( 0, 23 );
-        this._appendRow( this._tr( "hours" ), this._content.hours );
+        this._appendRow( this._t( "hours" ), this._content.hours );
       }
       if ( this.options.minutes ) {
         this._content.minutes = this._createSelectWithOptions( 0, 59 );
-        this._appendRow( this._tr( "minutes" ), this._content.minutes );
+        this._appendRow( this._t( "minutes" ), this._content.minutes );
       }
       if ( this.options.seconds ) {
         this._content.seconds = this._createSelectWithOptions( 0, 59 );
-        this._appendRow( this._tr( "seconds" ), this._content.seconds );
+        this._appendRow( this._t( "seconds" ), this._content.seconds );
       }
       if ( this.options.defaultValue ) {
         var value;
@@ -270,7 +270,7 @@
       } ).append( el )
         .appendTo( row );
     },
-    _tr: function( key, count ) {
+    _t: function( key, count ) {
       return $.timeDurationPicker.i18n.t( this.options.lang, key, count );
     },
     seconds: function( val ) {
@@ -393,27 +393,27 @@
     getDuration: function() {
       var units = [];
       if ( this.options.years && this.years() > 0 ) {
-        units.push( this._tr( "units.year", this.years() ) );
+        units.push( this._t( "units.year", this.years() ) );
       }
       if ( this.options.months && this.months() > 0 ) {
-        units.push( this._tr( "units.month", this.months() ) );
+        units.push( this._t( "units.month", this.months() ) );
       }
       if ( this.options.days && this.days() > 0 ) {
-        units.push( this._tr( "units.day", this.days() ) );
+        units.push( this._t( "units.day", this.days() ) );
       }
       if ( this.options.hours && this.hours() > 0 ) {
-        units.push( this._tr( "units.hour", this.hours() ) );
+        units.push( this._t( "units.hour", this.hours() ) );
       }
       if ( this.options.minutes && this.minutes() > 0 ) {
-        units.push( this._tr( "units.minute", this.minutes() ) );
+        units.push( this._t( "units.minute", this.minutes() ) );
       }
       if ( this.options.seconds && this.seconds() > 0 ) {
-        units.push( this._tr( "units.second", this.seconds() ) );
+        units.push( this._t( "units.second", this.seconds() ) );
       }
 
       var last = "";
       if ( units.length > 1 ) {
-        last = " " + this._tr( "and" ) + " " + units.pop();
+        last = " " + this._t( "and" ) + " " + units.pop();
       }
       return units.join( ", " ) + last;
     }
