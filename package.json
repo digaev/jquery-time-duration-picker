@@ -1,6 +1,6 @@
 {
   "name": "jquery-time-duration-picker",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "jQuery-ui widget for choosing time duration",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

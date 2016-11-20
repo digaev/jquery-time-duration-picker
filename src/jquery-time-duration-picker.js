@@ -1,5 +1,5 @@
 /*!
- * jquery-time-duration-picker v2.1.0
+ * jquery-time-duration-picker v2.1.1
  *
  * https://github.com/digaev/jquery-time-duration-picker
  *
@@ -105,8 +105,6 @@
         if ( inst.element[ j ] === e.target ) {
           var offset = $( e.target ).offset();
           offset.top += $( e.target ).outerHeight();
-          offset.top -= $( window ).scrollTop();
-          offset.left -= $( window ).scrollLeft();
           inst._content.div.css( offset ).fadeIn();
         }
       }
