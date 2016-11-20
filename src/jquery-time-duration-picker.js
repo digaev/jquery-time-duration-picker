@@ -184,7 +184,7 @@
         self._content.div.fadeOut();
         if ( self.options.onSelect ) {
           self.options.onSelect(
-            self.element, self.getDuration(), self.getHumanDuration()
+            self.element, self.getSeconds(), self.getDuration()
           );
         }
       } );
@@ -226,8 +226,8 @@
         } else {
           value = this.options.defaultValue;
         }
-        if ( this.setDuration( value ) ) {
-          this.element.val( this.getHumanDuration() );
+        if ( this.setSeconds( value ) ) {
+          this.element.val( this.getDuration() );
         }
       }
     },
@@ -291,7 +291,7 @@
     years: function() {
       return parseInt( this._content.years.val() );
     },
-    setDuration: function( value ) {
+    setSeconds: function( value ) {
       value = parseInt( value );
       if ( isNaN( value ) ) {
         return false;
@@ -344,7 +344,7 @@
       }
       return value;
     },
-    getDuration: function() {
+    getSeconds: function() {
       var seconds = 0;
       if ( this.options.seconds ) {
         seconds += this.seconds();
@@ -366,7 +366,7 @@
       }
       return seconds;
     },
-    getHumanDuration: function() {
+    getDuration: function() {
       var units = [];
       if ( this.options.years && this.years() > 0 ) {
         units.push( this._tr( "units.year", this.years() ) );
