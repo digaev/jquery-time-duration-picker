@@ -11,7 +11,7 @@
   var defaults = {
     lang: "en_US",
     css: {
-      position: "fixed" // https://github.com/digaev/jquery-time-duration-picker/issues/1
+      position: "fixed"
     },
     years: true,
     months: true,
@@ -31,20 +31,64 @@
     },
     langs: {
       en_US: {
-        seconds: "Seconds",
-        minutes: "Minutes",
-        hours: "Hours",
-        days: "Days",
-        months: "Months",
         years: "Years",
-        human_years: "years",
-        human_months: "months",
-        human_days: "days",
-        human_hours: "hours",
-        human_minutes: "minutes",
-        human_seconds: "seconds",
+        months: "Months",
+        days: "Days",
+        hours: "Hours",
+        minutes: "Minutes",
+        seconds: "Seconds",
         and: "and",
-        button_ok: "Done"
+        button_ok: "OK",
+        units: {
+          year: {
+            one: "year",
+            other: "years"
+          },
+          month: {
+            one: "month",
+            other: "months"
+          },
+          day: {
+            one: "day",
+            other: "days"
+          },
+          hour: {
+            one: "hour",
+            other: "hours"
+          },
+          minute: {
+            one: "minute",
+            other: "minutes"
+          },
+          second: {
+            one: "second",
+            other: "seconds"
+          }
+        }
+      }
+    },
+    i18n: {
+      t: function( lang, key, count ) {
+        if ( count ) {
+          key += "." + this.pluralRules[ lang ]( count );
+        }
+
+        var keys = key.split( "." );
+        var s = $.timeDurationPicker.langs[ lang ][ keys[ 0 ] ];
+        for ( var i = 1; i < keys.length; ++i ) {
+          s = s[ keys[ i ] ];
+        }
+        if ( count ) {
+          s = count + " " + s;
+        }
+        return s;
+      },
+
+      // http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
+      pluralRules: {
+        en_US: function( count ) {
+          return parseInt( count ) === 1 ? "one" : "other";
+        }
       }
     }
   };
@@ -226,25 +270,25 @@
       } ).append( el )
         .appendTo( row );
     },
-    _tr: function( key ) {
-      return $.timeDurationPicker.langs[ this.options.lang ][ key ];
+    _tr: function( key, count ) {
+      return $.timeDurationPicker.i18n.t( this.options.lang, key, count );
     },
-    getSeconds: function() {
+    seconds: function() {
       return parseInt( this._content.seconds.val() );
     },
-    getMinutes: function() {
+    minutes: function() {
       return parseInt( this._content.minutes.val() );
     },
-    getHours: function() {
+    hours: function() {
       return parseInt( this._content.hours.val() );
     },
-    getDays: function() {
+    days: function() {
       return parseInt( this._content.days.val() );
     },
-    getMonths: function() {
+    months: function() {
       return parseInt( this._content.months.val() );
     },
-    getYears: function() {
+    years: function() {
       return parseInt( this._content.years.val() );
     },
     setDuration: function( value ) {
@@ -303,56 +347,51 @@
     getDuration: function() {
       var seconds = 0;
       if ( this.options.seconds ) {
-        seconds += this.getSeconds();
+        seconds += this.seconds();
       }
       if ( this.options.minutes ) {
-        seconds += this.getMinutes() * MINUTE;
+        seconds += this.minutes() * MINUTE;
       }
       if ( this.options.hours ) {
-        seconds += this.getHours() * HOUR;
+        seconds += this.hours() * HOUR;
       }
       if ( this.options.days ) {
-        seconds += this.getDays() * DAY;
+        seconds += this.days() * DAY;
       }
       if ( this.options.months ) {
-        seconds += this.getMonths() * MONTH;
+        seconds += this.months() * MONTH;
       }
       if ( this.options.years ) {
-        seconds += this.getYears() * YEAR;
+        seconds += this.years() * YEAR;
       }
       return seconds;
     },
     getHumanDuration: function() {
       var units = [];
-      var duration = "";
-
-      if ( this.options.years && this.getYears() > 0 ) {
-        units.push( { value: this.getYears(), name: this._tr( "human_years" ) } );
+      if ( this.options.years && this.years() > 0 ) {
+        units.push( this._tr( "units.year", this.years() ) );
       }
-      if ( this.options.months && this.getMonths() > 0 ) {
-        units.push( { value: this.getMonths(), name: this._tr( "human_months" ) } );
+      if ( this.options.months && this.months() > 0 ) {
+        units.push( this._tr( "units.month", this.months() ) );
       }
-      if ( this.options.days && this.getDays() > 0 ) {
-        units.push( { value: this.getDays(), name: this._tr( "human_days" ) } );
+      if ( this.options.days && this.days() > 0 ) {
+        units.push( this._tr( "units.day", this.days() ) );
       }
-      if ( this.options.hours && this.getHours() > 0 ) {
-        units.push( { value: this.getHours(), name: this._tr( "human_hours" ) } );
+      if ( this.options.hours && this.hours() > 0 ) {
+        units.push( this._tr( "units.hour", this.hours() ) );
       }
-      if ( this.options.minutes && this.getMinutes() > 0 ) {
-        units.push( { value: this.getMinutes(), name: this._tr( "human_minutes" ) } );
+      if ( this.options.minutes && this.minutes() > 0 ) {
+        units.push( this._tr( "units.minute", this.minutes() ) );
       }
-      if ( this.options.seconds && this.getSeconds() > 0 ) {
-        units.push( { value: this.getSeconds(), name: this._tr( "human_seconds" ) } );
+      if ( this.options.seconds && this.seconds() > 0 ) {
+        units.push( this._tr( "units.second", this.seconds() ) );
       }
 
-      for ( var i = 0, l = units.length; i < l; ++i ) {
-        var unit = units[ i ];
-        var end = ( i === l - 2 ? " " + this._tr( "and" ) + " " : ", " );
-        end = i === l - 1 ? "" : end;
-
-        duration += unit.value + " " + unit.name + end;
+      var last = "";
+      if ( units.length > 1 ) {
+        last = " " + this._tr( "and" ) + " " + units.pop();
       }
-      return duration;
+      return units.join( ", " ) + last;
     }
   } );
 } )( jQuery );
