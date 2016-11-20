@@ -74,14 +74,14 @@
         }
 
         var keys = key.split( "." );
-        var s = $.timeDurationPicker.langs[ lang ][ keys[ 0 ] ];
+        var text = $.timeDurationPicker.langs[ lang ][ keys[ 0 ] ];
         for ( var i = 1; i < keys.length; ++i ) {
-          s = s[ keys[ i ] ];
+          text = text[ keys[ i ] ];
         }
         if ( count ) {
-          s = count + " " + s;
+          text = count + " " + text;
         }
-        return s;
+        return text;
       },
 
       // http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
