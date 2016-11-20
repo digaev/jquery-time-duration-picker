@@ -139,7 +139,72 @@
       </table>
 
       <h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Languages</h3>
-      TODO
+      <ol>
+        <li>First, you need to add translation to your language;</li>
+        <li>Second, you need to define plural rules of your language. See <a href="http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html" target="_blank">Language Plural Rules</a>;</li>
+      </ol>
+      <p>Here is example adding Russian translation:</p>
+      <pre>// Add translation
+
+$.timeDurationPicker.langs.ru_RU = {
+  years: &quot;Годы&quot;,
+  months: &quot;Месяцы&quot;,
+  days: &quot;Дни&quot;,
+  hours: &quot;Часы&quot;,
+  minutes: &quot;Минуты&quot;,
+  seconds: &quot;Секунды&quot;,
+  and: &quot;и&quot;,
+  button_ok: &quot;Выбрать&quot;,
+  units: {
+    year: {
+      one: &quot;год&quot;,
+      few: &quot;года&quot;,
+      many: &quot;лет&quot;
+    },
+    month: {
+      one: &quot;месяц&quot;,
+      few: &quot;месяца&quot;,
+      many: &quot;месяцев&quot;
+    },
+    day: {
+      one: &quot;день&quot;,
+      few: &quot;дня&quot;,
+      many: &quot;дней&quot;
+    },
+    hour: {
+      one: &quot;час&quot;,
+      few: &quot;часа&quot;,
+      many: &quot;часов&quot;
+    },
+    minute: {
+      one: &quot;минута&quot;,
+      few: &quot;минуты&quot;,
+      many: &quot;минут&quot;
+    },
+    second: {
+      one: &quot;секунда&quot;,
+      few: &quot;секунды&quot;,
+      many: &quot;секунд&quot;
+    }
+  }
+}</pre>
+      <pre>// Define rules
+
+$.timeDurationPicker.i18n.pluralRules.ru_RU = function( count ) {
+  count = parseInt( count );
+  var m10 = count % 10;
+  var m100 = count % 100;
+
+  if ( m10 === 1 &amp;&amp; m100 !== 11 ) {
+    return &quot;one&quot;;
+  } else if ( ( m10 &gt;= 2 &amp;&amp; m10 &lt;= 4 ) &amp;&amp; ( m100 &lt; 12 || m100 &gt; 14 ) ) {
+    return &quot;few&quot;;
+  } else if ( m10 === 0 || ( m10 &gt;= 5 &amp;&amp; m10 &lt;= 9 ) || ( m100 &gt;= 11 &amp;&amp; m100 &lt;= 14 ) ) {
+    return &quot;many&quot;;
+  } else {
+    return &quot;other&quot;;
+  }
+}</pre>
 
       <h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h3>
       MIT
