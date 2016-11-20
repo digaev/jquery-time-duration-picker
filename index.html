@@ -44,7 +44,12 @@
 
       <h3><a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h3>
 
-      <pre>&lt;script&gt;
+      <pre>&lt;input id=&quot;duration&quot; type=&quot;text&quot; /&gt;
+&lt;input id=&quot;seconds&quot; type=&quot;hidden&quot; value=&quot;12345&quot; /&gt;
+
+...
+
+&lt;script&gt;
   $(function() {
     $('#duration').timeDurationPicker({
       defaultValue: function() {
