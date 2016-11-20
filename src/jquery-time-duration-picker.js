@@ -183,8 +183,8 @@
       this._content.button.on( "click", function() {
         self._content.div.fadeOut();
         if ( self.options.onSelect ) {
-          self.options.onSelect(
-            self.element, self.getSeconds(), self.getDuration()
+          self.options.onSelect.call(
+            self, self.element, self.getSeconds(), self.getDuration()
           );
         }
       } );
