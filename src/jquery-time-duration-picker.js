@@ -11,7 +11,7 @@
   var defaults = {
     lang: "en_US",
     css: {
-      position: "fixed"
+      position: "absolute"
     },
     years: true,
     months: true,
