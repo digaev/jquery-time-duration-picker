@@ -273,23 +273,47 @@
     _tr: function( key, count ) {
       return $.timeDurationPicker.i18n.t( this.options.lang, key, count );
     },
-    seconds: function() {
-      return parseInt( this._content.seconds.val() );
+    seconds: function( val ) {
+      if ( val ) {
+        this._content.seconds.val( val );
+      } else {
+        return parseInt( this._content.seconds.val() );
+      }
     },
-    minutes: function() {
-      return parseInt( this._content.minutes.val() );
+    minutes: function( val ) {
+      if ( val ) {
+        this._content.minutes.val( val );
+      } else {
+        return parseInt( this._content.minutes.val() );
+      }
     },
-    hours: function() {
-      return parseInt( this._content.hours.val() );
+    hours: function( val ) {
+      if ( val ) {
+        this._content.hours.val( val );
+      } else {
+        return parseInt( this._content.hours.val() );
+      }
     },
-    days: function() {
-      return parseInt( this._content.days.val() );
+    days: function( val ) {
+      if ( val ) {
+        this._content.days.val( val );
+      } else {
+        return parseInt( this._content.days.val() );
+      }
     },
-    months: function() {
-      return parseInt( this._content.months.val() );
+    months: function( val ) {
+      if ( val ) {
+        this._content.months.val( );
+      } else {
+        return parseInt( this._content.months.val() );
+      }
     },
-    years: function() {
-      return parseInt( this._content.years.val() );
+    years: function( val ) {
+      if ( val ) {
+        this._content.years.val( val );
+      } else {
+        return parseInt( this._content.years.val() );
+      }
     },
     setSeconds: function( value ) {
       value = parseInt( value );
