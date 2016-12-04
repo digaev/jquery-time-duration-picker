@@ -3,7 +3,7 @@ $( function() {
   var seconds = 36561906;
   var duration = "1 year, 2 months, 3 days, 4 hours, 5 minutes and 6 seconds";
 
-  $( "#duration" ).timeDurationPicker( { seconds: true } );
+  input.timeDurationPicker( { seconds: true } );
 
   QUnit.test( "setSeconds()", function( assert ) {
     assert.notEqual( input.timeDurationPicker( "setSeconds", seconds ), false );
