@@ -301,7 +301,7 @@
     },
     months: function( val ) {
       if ( val ) {
-        this._content.months.val( );
+        this._content.months.val( val );
       } else {
         return parseInt( this._content.months.val() );
       }
