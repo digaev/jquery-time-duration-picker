@@ -1,5 +1,5 @@
 /*!
- * jquery-time-duration-picker v2.1.1
+ * jquery-time-duration-picker v2.1.2
  *
  * https://github.com/digaev/jquery-time-duration-picker
  *
