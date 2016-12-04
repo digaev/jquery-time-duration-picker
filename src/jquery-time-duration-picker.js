@@ -364,7 +364,6 @@
         }
         this._content.seconds.val( i );
       }
-      return value;
     },
     getSeconds: function() {
       var seconds = 0;
