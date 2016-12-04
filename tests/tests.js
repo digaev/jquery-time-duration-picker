@@ -1,34 +1,12 @@
 $( function() {
   var input = $( "#duration" );
-  var seconds = 12345;
+  var seconds = 36561906;
+  var duration = "1 year, 2 months, 3 days, 4 hours, 5 minutes and 6 seconds";
 
-  $( "#duration" ).timeDurationPicker( {
-    seconds: true,
-    defaultValue: seconds
-  } );
+  $( "#duration" ).timeDurationPicker( { seconds: true } );
 
-  QUnit.test( "years()", function( assert ) {
-    assert.equal( input.timeDurationPicker( "years" ), 0 );
-  } );
-
-  QUnit.test( "month()", function( assert ) {
-    assert.equal( input.timeDurationPicker( "months" ), 0 );
-  } );
-
-  QUnit.test( "days()", function( assert ) {
-    assert.equal( input.timeDurationPicker( "days" ), 0 );
-  } );
-
-  QUnit.test( "hours()", function( assert ) {
-    assert.equal( input.timeDurationPicker( "hours" ), 3 );
-  } );
-
-  QUnit.test( "minutes()", function( assert ) {
-    assert.equal( input.timeDurationPicker( "minutes" ), 25 );
-  } );
-
-  QUnit.test( "seconds()", function( assert ) {
-    assert.equal( input.timeDurationPicker( "seconds" ), 45 );
+  QUnit.test( "setSeconds()", function( assert ) {
+    assert.notEqual( input.timeDurationPicker( "setSeconds", seconds ), false );
   } );
 
   QUnit.test( "getSeconds()", function( assert ) {
@@ -36,6 +14,36 @@ $( function() {
   } );
 
   QUnit.test( "getDuration()", function( assert ) {
-    assert.equal( input.timeDurationPicker( "getDuration" ), "3 hours, 25 minutes and 45 seconds" );
+    assert.equal( input.timeDurationPicker( "getDuration" ), duration );
+  } );
+
+  QUnit.test( "years()", function( assert ) {
+    input.timeDurationPicker( "years", 99 );
+    assert.equal( input.timeDurationPicker( "years" ), 99 );
+  } );
+
+  QUnit.test( "month()", function( assert ) {
+    input.timeDurationPicker( "months", 11 );
+    assert.equal( input.timeDurationPicker( "months" ), 11 );
+  } );
+
+  QUnit.test( "days()", function( assert ) {
+    input.timeDurationPicker( "days", 29 );
+    assert.equal( input.timeDurationPicker( "days" ), 29 );
+  } );
+
+  QUnit.test( "hours()", function( assert ) {
+    input.timeDurationPicker( "hours", 23 );
+    assert.equal( input.timeDurationPicker( "hours" ), 23 );
+  } );
+
+  QUnit.test( "minutes()", function( assert ) {
+    input.timeDurationPicker( "minutes", 59 );
+    assert.equal( input.timeDurationPicker( "minutes" ), 59 );
+  } );
+
+  QUnit.test( "seconds()", function( assert ) {
+    input.timeDurationPicker( "seconds", 59 );
+    assert.equal( input.timeDurationPicker( "seconds" ), 59 );
   } );
 } );
