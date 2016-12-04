@@ -194,7 +194,7 @@
     },
     _initUnits: function() {
       if ( this.options.years ) {
-        this._content.years = this._createSelectWithOptions( 0, 10 );
+        this._content.years = this._createSelectWithOptions( 0, 99 );
         this._appendRow( this._t( "years" ), this._content.years );
       }
       if ( this.options.months ) {
@@ -224,7 +224,7 @@
         } else {
           value = this.options.defaultValue;
         }
-        if ( this.setSeconds( value ) ) {
+        if ( this.setSeconds( value ) !== false ) {
           this.element.val( this.getDuration() );
         }
       }
