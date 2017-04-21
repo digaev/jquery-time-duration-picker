@@ -1,6 +1,6 @@
 {
   "name": "jquery-time-duration-picker",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "jQuery-ui widget for choosing time duration",
   "main": "src/jquery-time-duration-picker.js",
   "authors": [
