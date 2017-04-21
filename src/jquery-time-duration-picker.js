@@ -192,6 +192,15 @@
 
       instances.push( this );
     },
+    _destroy: function () {
+      var i = instances.indexOf(this);
+
+      if (i > -1) {
+        instances.splice(i, 1);
+      }
+
+      this._content.div.remove();
+    },
     _initUnits: function() {
       if ( this.options.years ) {
         this._content.years = this._createSelectWithOptions( 0, 99 );
