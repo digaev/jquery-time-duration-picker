@@ -193,10 +193,10 @@
       instances.push( this );
     },
     _destroy: function () {
-      var i = instances.indexOf(this);
+      var i = instances.indexOf( this );
 
       if (i > -1) {
-        instances.splice(i, 1);
+        instances.splice( i, 1 );
       }
 
       this._content.div.remove();
