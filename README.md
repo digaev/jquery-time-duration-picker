@@ -9,4 +9,4 @@ $ bower install jquery-time-duration-picker
 
 ## Usage
 
-Please, see this [demo page] (https://digaev.github.io/jquery-time-duration-picker/) or this [example] (example/index.html).
+Please, see this [demo page](https://digaev.github.io/jquery-time-duration-picker/) or this [example](example/index.html).
