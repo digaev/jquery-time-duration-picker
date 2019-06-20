@@ -118,6 +118,9 @@ $( function() {
     input.timeDurationPicker( "setSeconds", 12345 );
     assert.equal( input.timeDurationPicker( "getDuration" ), "PT3H25M45S" );
 
+    input.timeDurationPicker( "setDuration", "P0Y" );
+    assert.equal( input.timeDurationPicker( "getDuration" ), "PT0S" );
+
     input.timeDurationPicker( "setDuration", "PT1S" );
     assert.equal( input.timeDurationPicker( "getDuration" ), "PT1S" );
 

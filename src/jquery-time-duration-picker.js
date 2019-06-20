@@ -363,7 +363,7 @@
         duration = duration.substr( 0, duration.length - 1 );
       }
 
-      return duration.length === "P" ? "PT0S" : duration;
+      return duration === "P" ? "PT0S" : duration;
     },
 
     setDuration: function( value ) {
