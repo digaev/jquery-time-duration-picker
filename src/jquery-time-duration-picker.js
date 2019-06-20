@@ -423,7 +423,7 @@
           };
         },
         validate: function( value ) {
-          return !isNaN( Date.parse( value.substr( 1 ) ) );
+          return this.re.test( value ) && !isNaN( Date.parse( value.substr( 1 ) ) );
         }
       } ];
 
