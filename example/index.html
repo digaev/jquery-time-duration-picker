@@ -15,7 +15,8 @@
 </head>
 <body>
   <form>
-    <input type="text" readonly="readonly" id="duration" placeholder="Click here..." size="100" style="text-align: center;" />
+    <input type="text" readonly="readonly" id="widget" placeholder="Click here..." size="100" style="text-align: center;" />
+    <input type="hidden" name="duration" value="PT3H25M45S" id="duration" />
     <input type="hidden" name="seconds" value="12345" id="seconds" />
   </form>
 
@@ -24,13 +25,19 @@
   <script type="text/javascript" src="../src/jquery-time-duration-picker.js"></script>
   <script>
     $(function() {
-      $('#duration').timeDurationPicker({
+      $('#widget').timeDurationPicker({
+        seconds: true,
         defaultValue: function() {
-          return $('#seconds').val();
+          // The function must return either a String in ISO 8601 format (preferable)
+          // (see see https://en.wikipedia.org/wiki/ISO_8601#Durations),
+          // or a Number - number of seconds
+
+          return $("#duration").val(); // return parseInt($('#seconds').val(), 10);
         },
-        onSelect: function(element, seconds, duration) {
-          $('#seconds').val(seconds);
-          $('#duration').val(duration);
+        onSelect: function(element, seconds, duration, text) {
+          $('#seconds').val(seconds); // Number of seconds
+          $('#duration').val(duration); // ISO 8601 (PnYnMnDTnHnMnS)
+          $('#widget').val(text); // Human-readable duration
         }
       });
     });

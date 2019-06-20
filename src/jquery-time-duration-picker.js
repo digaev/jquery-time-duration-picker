@@ -3,7 +3,7 @@
  *
  * https://github.com/digaev/jquery-time-duration-picker
  *
- * Copyright (c) 2015-2016 Nikolay Digaev
+ * Copyright (c) 2015-2019 Nikolay Digaev
  * Released under the MIT license
  */
 
@@ -182,7 +182,7 @@
         self._content.div.fadeOut();
         if ( self.options.onSelect ) {
           self.options.onSelect.call(
-            self, self.element, self.getSeconds(), self.getDuration()
+            self, self.element, self.getSeconds(), self.getDuration(), self.translate()
           );
         }
       } );
@@ -192,72 +192,75 @@
 
       instances.push( this );
     },
-    _destroy: function () {
+    _destroy: function() {
       var i = instances.indexOf( this );
 
-      if (i > -1) {
+      if ( i > -1 ) {
         instances.splice( i, 1 );
       }
 
       this._content.div.remove();
     },
     _initUnits: function() {
-      if ( this.options.years ) {
-        this._content.years = this._createSelectWithOptions( 0, 99 );
-        this._appendRow( this._t( "years" ), this._content.years );
+      var units = [
+        "years", "months", "days", "hours", "minutes", "seconds"
+      ];
+
+      for ( var i = 0; i < units.length; ++i ) {
+        var u = units[ i ];
+
+        if ( this.options[ u ] ) {
+          this._content[ u ] = this._createNumberInput( 0, 0 );
+          this._appendRow( this._t( u ), this._content[ u ] );
+        }
       }
-      if ( this.options.months ) {
-        this._content.months = this._createSelectWithOptions( 0, 11 );
-        this._appendRow( this._t( "months" ), this._content.months );
-      }
-      if ( this.options.days ) {
-        this._content.days = this._createSelectWithOptions( 0, 29 );
-        this._appendRow( this._t( "days" ), this._content.days );
-      }
-      if ( this.options.hours ) {
-        this._content.hours = this._createSelectWithOptions( 0, 23 );
-        this._appendRow( this._t( "hours" ), this._content.hours );
-      }
-      if ( this.options.minutes ) {
-        this._content.minutes = this._createSelectWithOptions( 0, 59 );
-        this._appendRow( this._t( "minutes" ), this._content.minutes );
-      }
-      if ( this.options.seconds ) {
-        this._content.seconds = this._createSelectWithOptions( 0, 59 );
-        this._appendRow( this._t( "seconds" ), this._content.seconds );
-      }
+
       if ( this.options.defaultValue ) {
         var value;
+
         if ( typeof this.options.defaultValue === "function" ) {
           value = this.options.defaultValue.call( this );
-        } else {
-          value = this.options.defaultValue;
         }
-        if ( this.setSeconds( value ) !== false ) {
-          this.element.val( this.getDuration() );
+
+        switch ( typeof value ) {
+        case "number":
+          this.setSeconds( value );
+          break;
+        case "string":
+          this.setDuration( value );
+          break;
+        default:
+          throw new Error( "Unexpected default value type" );
         }
+
+        this.element.val( this.translate() );
       }
     },
-    _createSelectWithOptions: function( min, max ) {
-      var select = $( "<select />" ).addClass(
-        "ui-widget ui-state-default ui-corner-all"
-      );
+    _createNumberInput: function( value, min, max ) {
+      var input = $( "<input type='number' />" );
 
-      select.hover( function() {
-        $( this ).addClass( "ui-state-hover" );
-      }, function() {
-        $( this ).removeClass( "ui-state-hover" );
+      value = parseInt( value, 10 );
+      min = parseInt( min, 10 );
+      max = parseInt( max, 10 );
+
+      input.css( {
+        display: "block",
+        width: "3.5em"
       } );
 
-      this._createOptionsForSelect( select, min, max );
-      return select;
-    },
-    _createOptionsForSelect: function( select, min, max ) {
-      for ( var i = min; i <= max; ++i ) {
-        select.append( $( "<option />" ).val( i ).text(
-          i < 10 ? ( "0" + i ) : i
-        ) );
+      if ( !isNaN( value ) ) {
+        input.attr( "value", value );
       }
+
+      if ( !isNaN( min ) ) {
+        input.attr( "min", min );
+      }
+
+      if ( !isNaN( max ) ) {
+        input.attr( "max", max );
+      }
+
+      return input;
     },
     _appendRow: function( text, el ) {
       var row = $( "<tr />" ).appendTo( this._content.tableBody );
@@ -284,48 +287,190 @@
       if ( val ) {
         this._content.seconds.val( val );
       } else {
-        return parseInt( this._content.seconds.val() );
+        return parseInt( this._content.seconds.val(), 10 );
       }
     },
     minutes: function( val ) {
       if ( val ) {
         this._content.minutes.val( val );
       } else {
-        return parseInt( this._content.minutes.val() );
+        return parseInt( this._content.minutes.val(), 10 );
       }
     },
     hours: function( val ) {
       if ( val ) {
         this._content.hours.val( val );
       } else {
-        return parseInt( this._content.hours.val() );
+        return parseInt( this._content.hours.val(), 10 );
       }
     },
     days: function( val ) {
       if ( val ) {
         this._content.days.val( val );
       } else {
-        return parseInt( this._content.days.val() );
+        return parseInt( this._content.days.val(), 10 );
       }
     },
     months: function( val ) {
       if ( val ) {
         this._content.months.val( val );
       } else {
-        return parseInt( this._content.months.val() );
+        return parseInt( this._content.months.val(), 10 );
       }
     },
     years: function( val ) {
       if ( val ) {
         this._content.years.val( val );
       } else {
-        return parseInt( this._content.years.val() );
+        return parseInt( this._content.years.val(), 10 );
+      }
+    },
+
+    // Returns String in PnYnMnDTnHnMnS format
+    // See https://en.wikipedia.org/wiki/ISO_8601#Durations
+    getDuration: function() {
+      var duration = "P";
+
+      if ( this.options.years && this.years() ) {
+        duration += this.years() + "Y";
+      }
+
+      if ( this.options.months && this.months() ) {
+        duration += this.months() + "M";
+      }
+
+      if ( this.options.days && this.days() ) {
+        duration += this.days() + "D";
+      }
+
+      if ( this.options.hours || this.options.minutes || this.options.seconds ) {
+        duration += "T";
+      }
+
+      if ( this.options.hours && this.hours() ) {
+        duration += this.hours() + "H";
+      }
+
+      if ( this.options.minutes && this.minutes() ) {
+        duration += this.minutes() + "M";
+      }
+
+      if ( this.options.seconds && this.seconds() ) {
+        duration += this.seconds() + "S";
+      }
+
+      if ( duration[ duration.length - 1 ] === "T" ) {
+        duration = duration.substr( 0, duration.length - 1 );
+      }
+
+      return duration.length === "P" ? "PT0S" : duration;
+    },
+
+    setDuration: function( value ) {
+      var formats = [ {
+
+        // PnYnMnDTnHnMnS
+        re: /^P((\d+)Y)?((\d+)M)?((\d+)D)?(T((\d+)H)?((\d+)M)?((\d+)S)?)?$/,
+        parse: function( value ) {
+          var matches = this.re.exec( value );
+
+          for ( var i = 2; i < matches.length; ++i ) {
+            matches[ i ] = parseInt( matches[ i ], 10 ) || 0;
+          }
+
+          return {
+            years: matches[ 2 ],
+            months: matches[ 4 ],
+            days: matches[ 6 ],
+            hours: matches[ 9 ],
+            minutes: matches[ 11 ],
+            seconds: matches[ 13 ]
+          };
+        },
+        validate: function( value ) {
+          return this.re.test( value );
+        }
+      }, {
+
+        // PnW
+        re: /^P(\d+)W$/,
+        parse: function( value ) {
+          var days = this.re.exec( value )[ 1 ] * 7;
+
+          return { years: 0, months: 0, days: days, hours: 0, minutes: 0, seconds: 0 };
+        },
+        validate: function( value ) {
+          return this.re.test( value );
+        }
+      }, {
+
+        // P<date>T<time>
+        re: /^P(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})$/,
+        parse: function( value ) {
+          var matches = this.re.exec( value );
+
+          for ( var i = 1; i < matches.length; ++i ) {
+            matches[ i ] = parseInt( matches[ i ], 10 );
+          }
+
+          return {
+            years: matches[ 1 ],
+            months: matches[  2 ],
+            days: matches[ 3 ],
+            hours: matches[ 4 ],
+            minutes: matches[ 5 ],
+            seconds: matches[ 6 ]
+          };
+        },
+        validate: function( value ) {
+          return !isNaN( Date.parse( value.substr( 1 ) ) );
+        }
+      } ];
+
+      var duration;
+
+      for ( var i = 0; i < formats.length; ++i ) {
+        var format = formats[ i ];
+
+        if ( format.validate( value ) ) {
+          duration = format.parse( value );
+          break;
+        }
+      }
+
+      if ( !duration ) {
+        throw new Error( "Invalid format" );
+      }
+
+      if ( this.options.years ) {
+        this._content.years.val( duration.years );
+      }
+
+      if ( this.options.months ) {
+        this._content.months.val( duration.months );
+      }
+
+      if ( this.options.days ) {
+        this._content.days.val( duration.days );
+      }
+
+      if ( this.options.hours ) {
+        this._content.hours.val( duration.hours );
+      }
+
+      if ( this.options.minutes ) {
+        this._content.minutes.val( duration.minutes );
+      }
+
+      if ( this.options.seconds ) {
+        this._content.seconds.val( duration.seconds );
       }
     },
     setSeconds: function( value ) {
-      value = parseInt( value );
+      value = parseInt( value, 10 );
+
       if ( isNaN( value ) ) {
-        return false;
+        throw new Error( "value is not an integer" );
       }
 
       var i;
@@ -396,7 +541,7 @@
       }
       return seconds;
     },
-    getDuration: function() {
+    translate: function() {
       var units = [];
       if ( this.options.years && this.years() > 0 ) {
         units.push( this._t( "units.year", this.years() ) );
