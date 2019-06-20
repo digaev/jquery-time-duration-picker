@@ -220,6 +220,8 @@
 
         if ( typeof this.options.defaultValue === "function" ) {
           value = this.options.defaultValue.call( this );
+        } else {
+          value = this.options.defaultValue;
         }
 
         switch ( typeof value ) {
