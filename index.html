@@ -35,8 +35,13 @@
     <section class="main-content">
       <h3><a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo</h3>
 
-      <input id="duration" type="text" readonly="readonly" placeholder="Click me!" class="demo-input">
-      <input id="seconds" type="hidden">
+      <input id="widget" type="text" readonly="readonly" placeholder="Click me!" class="demo-input">
+
+      <!-- 3 hours, 25 minutes and 45 seconds -->
+      <input id="seconds" type="hidden" name="seconds" value="12345">
+
+      <!-- ISO 8601 -->
+      <input id="duration" type="hidden" name="duration" value="PT3H25M45S">
 
       <h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
 
@@ -44,20 +49,26 @@
 
       <h3><a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h3>
 
-      <pre>&lt;input id=&quot;duration&quot; type=&quot;text&quot; readonly=&quot;readonly&quot; /&gt;
-&lt;input id=&quot;seconds&quot; type=&quot;hidden&quot; value=&quot;12345&quot; /&gt;
+      <pre>&lt;input id=&quot;widget&quot; type=&quot;text&quot; readonly=&quot;readonly&quot; placeholder=&quot;Click me!&quot;&gt;
+
+&lt;!-- 3 hours, 25 minutes and 45 seconds --&gt;
+&lt;input id=&quot;seconds&quot; type=&quot;hidden&quot; name=&quot;seconds&quot; value=&quot;12345&quot;&gt;
+&lt;!-- ISO 8601 --&gt;
+&lt;input id=&quot;duration&quot; type=&quot;hidden&quot; name=&quot;duration&quot; value=&quot;PT3H25M45S&quot;&gt;
 
 ...
 
 &lt;script&gt;
   $(function() {
-    $('#duration').timeDurationPicker({
+    $('#widget').timeDurationPicker({
+      seconds: true,
       defaultValue: function() {
-        return $('#seconds').val();
+        return $('#duration').val();
       },
-      onSelect: function(element, seconds, duration) {
+      onSelect: function(element, seconds, duration, text) {
         $('#seconds').val(seconds);
         $('#duration').val(duration);
+        $('#widget').val(text);
       }
     });
   });
@@ -88,57 +99,63 @@
           <td>
             <ul>
               <li><code>function</code></li>
-              <li><code>integer</code></li>
+              <li><code>Number</code></li>
+              <li><code>String</code></li>
             </ul>
           </td>
           <td>&nbsp;</td>
-          <td>Initial value</td>
+          <td>
+            Initial value
+            <ul>
+              <li><code>String</code> - <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations" target="_blank">ISO 8601</a></li>
+              <li><code>Number</code> - number of seconds</li>
+            </ul>
         </tr>
         <tr>
           <td>lang</td>
-          <td><code>string</code></td>
+          <td><code>String</code></td>
           <td><code>"en_US"</code></td>
           <td>Language identifier</td>
         </tr>
         <tr>
           <td>onSelect</td>
-          <td><code>function(element, seconds, duration)</code></td>
+          <td><code>function(element, seconds, duration, text)</code></td>
           <td>&nbsp;</td>
           <td>Callback function</td>
         </tr>
         <tr>
           <td>years</td>
-          <td><code>boolean</code></td>
+          <td><code>Boolean</code></td>
           <td><code>true</code></td>
           <td>Display or not years</td>
         </tr>
         <tr>
           <td>months</td>
-          <td><code>boolean</code></td>
+          <td><code>Boolean</code></td>
           <td><code>true</code></td>
           <td>Display or not months</td>
         </tr>
         <tr>
           <td>days</td>
-          <td><code>boolean</code></td>
+          <td><code>Boolean</code></td>
           <td><code>true</code></td>
           <td>Display or not days</td>
         </tr>
         <tr>
           <td>hours</td>
-          <td><code>boolean</code></td>
+          <td><code>Boolean</code></td>
           <td><code>true</code></td>
           <td>Display or not hours</td>
         </tr>
         <tr>
           <td>minutes</td>
-          <td><code>boolean</code></td>
+          <td><code>Boolean</code></td>
           <td><code>true</code></td>
           <td>Display or not minutes</td>
         </tr>
         <tr>
           <td>seconds</td>
-          <td><code>boolean</code></td>
+          <td><code>Boolean</code></td>
           <td><code>false</code></td>
           <td>Display or not seconds</td>
         </tr>
@@ -230,10 +247,15 @@ $.timeDurationPicker.i18n.pluralRules.ru_RU = function( count ) {
 
     <script>
       $(function() {
-        $('#duration').timeDurationPicker({
-          onSelect: function(element, seconds, duration) {
+        $('#widget').timeDurationPicker({
+          seconds: true,
+          defaultValue: function() {
+            return $('#duration').val();
+          },
+          onSelect: function(element, seconds, duration, text) {
             $('#seconds').val(seconds);
             $('#duration').val(duration);
+            $('#widget').val(text);
           }
         });
       });
