@@ -106,6 +106,7 @@
           var offset = $( e.target ).offset();
           offset.top += $( e.target ).outerHeight();
           inst._content.div.css( offset ).fadeIn();
+          inst._restore();
         }
       }
     }
@@ -180,6 +181,8 @@
       } );
       this._content.button.on( "click", function() {
         self._content.div.fadeOut();
+        self._save();
+
         if ( self.options.onSelect ) {
           self.options.onSelect.call(
             self, self.element, self.getSeconds(), self.getDuration(), self.translate()
@@ -235,6 +238,7 @@
           throw new Error( "Unexpected default value type" );
         }
 
+        this._save();
         this.element.val( this.translate() );
       }
     },
@@ -285,43 +289,100 @@
     _t: function( key, count ) {
       return $.timeDurationPicker.i18n.t( this.options.lang, key, count );
     },
+
+    _save: function() {
+      this._duration = {};
+
+      if ( this.options.years ) {
+        this._duration.years = this.years();
+      }
+
+      if ( this.options.months ) {
+        this._duration.months = this.months();
+      }
+
+      if ( this.options.days ) {
+        this._duration.days = this.days();
+      }
+
+      if ( this.options.hours ) {
+        this._duration.hours = this.hours();
+      }
+
+      if ( this.options.minutes ) {
+        this._duration.minutes = this.minutes();
+      }
+
+      if ( this.options.seconds ) {
+        this._duration.seconds = this.seconds();
+      }
+    },
+    _restore: function() {
+      if ( !this._duration ) {
+        this._duration = {};
+      }
+
+      if ( this.options.years ) {
+         this.years( this._duration.years || 0 );
+      }
+
+      if ( this.options.months ) {
+        this.months( this._duration.months || 0 );
+      }
+
+      if ( this.options.days ) {
+        this.days( this._duration.days || 0 );
+      }
+
+      if ( this.options.hours ) {
+        this.hours( this._duration.hours || 0 );
+      }
+
+      if ( this.options.minutes ) {
+        this.minutes( this._duration.minutes || 0 );
+      }
+
+      if ( this.options.seconds ) {
+        this.seconds( this._duration.seconds || 0 );
+      }
+    },
     seconds: function( val ) {
-      if ( val ) {
+      if ( !isNaN( val = parseInt( val, 10 ) ) ) {
         this._content.seconds.val( val );
       } else {
         return parseInt( this._content.seconds.val(), 10 );
       }
     },
     minutes: function( val ) {
-      if ( val ) {
+      if ( !isNaN( val = parseInt( val, 10 ) ) ) {
         this._content.minutes.val( val );
       } else {
         return parseInt( this._content.minutes.val(), 10 );
       }
     },
     hours: function( val ) {
-      if ( val ) {
+      if ( !isNaN( val = parseInt( val, 10 ) ) ) {
         this._content.hours.val( val );
       } else {
         return parseInt( this._content.hours.val(), 10 );
       }
     },
     days: function( val ) {
-      if ( val ) {
+      if ( !isNaN( val = parseInt( val, 10 ) ) ) {
         this._content.days.val( val );
       } else {
         return parseInt( this._content.days.val(), 10 );
       }
     },
     months: function( val ) {
-      if ( val ) {
+      if ( !isNaN( val = parseInt( val, 10 ) ) ) {
         this._content.months.val( val );
       } else {
         return parseInt( this._content.months.val(), 10 );
       }
     },
     years: function( val ) {
-      if ( val ) {
+      if ( !isNaN( val = parseInt( val, 10 ) ) ) {
         this._content.years.val( val );
       } else {
         return parseInt( this._content.years.val(), 10 );
