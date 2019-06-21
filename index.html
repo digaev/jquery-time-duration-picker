@@ -37,11 +37,11 @@
 
       <input id="widget" type="text" readonly="readonly" placeholder="Click me!" class="demo-input">
 
-      <!-- 3 hours, 25 minutes and 45 seconds -->
-      <input id="seconds" type="hidden" name="seconds" value="12345">
+      <!-- Number of seconds -->
+      <input id="seconds" type="hidden" name="seconds" value="0">
 
       <!-- ISO 8601 -->
-      <input id="duration" type="hidden" name="duration" value="PT3H25M45S">
+      <input id="duration" type="hidden" name="duration" value="PT0S">
 
       <h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
 
@@ -52,6 +52,8 @@
       <pre>&lt;input id=&quot;widget&quot; type=&quot;text&quot; readonly=&quot;readonly&quot; placeholder=&quot;Click me!&quot;&gt;
 
 &lt;!-- 3 hours, 25 minutes and 45 seconds --&gt;
+
+&lt;!-- Number of seconds --&gt;
 &lt;input id=&quot;seconds&quot; type=&quot;hidden&quot; name=&quot;seconds&quot; value=&quot;12345&quot;&gt;
 &lt;!-- ISO 8601 --&gt;
 &lt;input id=&quot;duration&quot; type=&quot;hidden&quot; name=&quot;duration&quot; value=&quot;PT3H25M45S&quot;&gt;
@@ -165,7 +167,7 @@
       <p>English is the default language. If you want to add any other language, follow this instructions:</p>
       <ol>
         <li>First, you need to add translation to your language;</li>
-        <li>Second, you need to define plural rules of your language. See <a href="http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html" target="_blank">Language Plural Rules</a>;</li>
+        <li>Second, you need to define plural rules of your language. See <a href="https://www.unicode.org/cldr/charts/29/supplemental/language_plural_rules.html" target="_blank">Language Plural Rules</a>;</li>
       </ol>
       <p>Here is example adding Russian translation:</p>
       <pre>// Add translation
@@ -215,7 +217,7 @@ $.timeDurationPicker.langs.ru_RU = {
       <pre>// Define rules
 
 $.timeDurationPicker.i18n.pluralRules.ru_RU = function( count ) {
-  count = parseInt( count );
+  count = parseInt( count, 10 );
   var m10 = count % 10;
   var m100 = count % 100;
 
