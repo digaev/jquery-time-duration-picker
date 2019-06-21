@@ -135,5 +135,8 @@ $( function() {
 
     input.timeDurationPicker( "setDuration", "P0003-06-04T12:30:05" );
     assert.equal( input.timeDurationPicker( "getDuration" ), "P3Y6M4DT12H30M5S" );
+
+    input.timeDurationPicker( "setDuration", "P0010-12-31T07:55:37" );
+    assert.equal( input.timeDurationPicker( "getDuration" ), "P10Y12M31DT7H55M37S" );
   } );
 } );

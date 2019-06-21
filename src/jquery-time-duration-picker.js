@@ -409,19 +409,15 @@
         // P<date>T<time>
         re: /^P(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})$/,
         parse: function( value ) {
-          var matches = this.re.exec( value );
-
-          for ( var i = 1; i < matches.length; ++i ) {
-            matches[ i ] = parseInt( matches[ i ], 10 );
-          }
+          var date = new Date( value.substr( 1 ) );
 
           return {
-            years: matches[ 1 ],
-            months: matches[  2 ],
-            days: matches[ 3 ],
-            hours: matches[ 4 ],
-            minutes: matches[ 5 ],
-            seconds: matches[ 6 ]
+            years: date.getFullYear(),
+            months: date.getMonth() + 1,
+            days: date.getDate(),
+            hours: date.getHours(),
+            minutes: date.getMinutes(),
+            seconds: date.getSeconds()
           };
         },
         validate: function( value ) {
