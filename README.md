@@ -1,12 +1,23 @@
 # jquery-time-duration-picker
 
-jQuery-ui widget for choosing duration.
+![npm](https://img.shields.io/npm/v/jquery-time-duration-picker?style=plastic)
+
+jQuery-UI browser widget for duration selection.
 
 ## Installation
+
+Using npm:
+
+```
+$ npm install jquery-time-duration-picker
+```
+
+Using bower:
+
 ```
 $ bower install jquery-time-duration-picker
 ```
 
-## Usage
+## Getting started
 
-Please, see this [demo page](https://digaev.github.io/jquery-time-duration-picker/) or this [example](example/index.html).
+See this [demo page](https://digaev.github.io/jquery-time-duration-picker/) or this [example](https://github.com/digaev/jquery-time-duration-picker/blob/master/example/index.html).
