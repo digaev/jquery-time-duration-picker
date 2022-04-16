@@ -17,6 +17,7 @@ Using bower:
 ```
 $ bower install jquery-time-duration-picker
 ```
+**Bower is not supported anymore, last published version is 2.2.5.**
 
 ## Getting started
 
