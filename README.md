@@ -1,6 +1,6 @@
 # jquery-time-duration-picker
 
-[![npm](https://img.shields.io/npm/v/jquery-time-duration-picker?style=plastic)](https://www.npmjs.com/package/jquery-time-duration-picker)
+[![npm](https://img.shields.io/npm/v/jquery-time-duration-picker)](https://www.npmjs.com/package/jquery-time-duration-picker)
 
 jQuery-UI browser widget for duration selection.
 
@@ -9,13 +9,13 @@ jQuery-UI browser widget for duration selection.
 Using npm:
 
 ```
-$ npm install jquery-time-duration-picker
+npm install jquery-time-duration-picker
 ```
 
 Using bower:
 
 ```
-$ bower install jquery-time-duration-picker
+bower install jquery-time-duration-picker
 ```
 **Bower is not supported anymore, last published version is 2.2.5.**
 
