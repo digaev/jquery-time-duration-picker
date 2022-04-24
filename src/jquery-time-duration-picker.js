@@ -3,7 +3,7 @@
  *
  * https://github.com/digaev/jquery-time-duration-picker
  *
- * Copyright (c) 2015-2019 Nikolay Digaev
+ * Copyright (c) 2015-2022 Nikolay Digaev
  * Released under the MIT license
  */
 
