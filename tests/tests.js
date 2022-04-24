@@ -14,6 +14,7 @@ $( function() {
   } );
 
   QUnit.test( "getSeconds()", function( assert ) {
+    input.timeDurationPicker( "setSeconds", seconds );
     assert.equal( input.timeDurationPicker( "getSeconds" ), seconds );
   } );
 
