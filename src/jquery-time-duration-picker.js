@@ -3,7 +3,7 @@
  *
  * https://github.com/digaev/jquery-time-duration-picker
  *
- * Copyright (c) 2015-2019 Nikolay Digaev
+ * Copyright (c) 2015-2022 Nikolay Digaev
  * Released under the MIT license
  */
 
@@ -106,7 +106,7 @@
           var offset = $( e.target ).offset();
           offset.top += $( e.target ).outerHeight();
           inst._content.div.css( offset ).fadeIn();
-          inst._restore();
+          inst.restore();
         }
       }
     }
@@ -181,7 +181,7 @@
       } );
       this._content.button.on( "click", function() {
         self._content.div.fadeOut();
-        self._save();
+        self.save();
 
         if ( self.options.onSelect ) {
           self.options.onSelect.call(
@@ -238,7 +238,7 @@
           throw new Error( "Unexpected default value type" );
         }
 
-        this._save();
+        this.save();
         this.element.val( this.translate() );
       }
     },
@@ -290,7 +290,7 @@
       return $.timeDurationPicker.i18n.t( this.options.lang, key, count );
     },
 
-    _save: function() {
+    save: function() {
       this._duration = {};
 
       if ( this.options.years ) {
@@ -317,7 +317,7 @@
         this._duration.seconds = this.seconds();
       }
     },
-    _restore: function() {
+    restore: function() {
       if ( !this._duration ) {
         this._duration = {};
       }
